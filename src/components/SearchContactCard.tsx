@@ -1,32 +1,37 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import CardMedia from "@material-ui/core/CardMedia";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Typography,
+  CardMedia,
+  CircularProgress,
+  Badge,
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    display: "flex",
-    alignItems: "center",
+    minWidth: 362,
+    // display: "flex",
+    // alignItems: "center",
+    marginTop: 200,
+    overflow: "inherit",
   },
-  title: {
-    fontSize: 14,
-  },
+  // title: {
+  // fontSize: 14,
+  // },
   avatar: {
     position: "relative",
-    top: "0.48%",
-    left: 10,
-    width: 80,
-    height: 80,
+    top: "-7.52%",
+    left: 12,
+    width: 75,
+    height: 76,
     borderRadius: 50,
   },
   progress: {
-    width: "95px !important",
-    height: "94px !important",
+    width: "89px !important",
+    height: "89px !important",
     position: "absolute",
     top: "-8.52%",
     left: "-10%",
@@ -38,7 +43,46 @@ const useStyles = makeStyles({
   // linearGradient: {
   // border: "1px solid #000",
   // },
+  button: {
+    fontFamily: "'Nunito', sans-serif",
+    height: 44,
+    minWidth: 46,
+    left: 291,
+    bottom: 138,
+    backgroundColor: "#EAE8FE",
+    color: "#794BFF",
+    fontWeight: "bold",
+    fontSize: 30,
+    border: "1px solid #794BFF",
+    boxShadow: "none",
+  },
 });
+
+const StyledBadge = withStyles({
+  badge: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+  },
+  root: {
+    position: "absolute",
+    right: "50%",
+    top: 0,
+  },
+})(Badge);
+
+const StyledHeader = withStyles({
+  root: {
+    position: "relative",
+    top: "-32%",
+    left: "25%",
+  },
+  title: {
+    fontSize: 17,
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 500,
+  },
+})(CardHeader);
 
 type Props = {
   userId: number;
@@ -76,20 +120,23 @@ function SearchContactCard(props: Props): JSX.Element {
               variant="determinate"
               value={props.trust}
             />
+            <StyledBadge badgeContent={props.trust} color="primary" />
           </div>
         }
       />
-      <CardHeader
+      <StyledHeader
+        // classes={{ title: classes.header }}
         title={props.fullName}
-        subheader={
-          <p>
-            Sta già condividendo <span>Disney Plus</span>
-          </p>
-        }
+        subheader="nessuna connessione"
       />
-      <Button variant="contained" color="primary">
-        Hello World
+      <Button variant="contained" color="primary" className={classes.button}>
+        +
       </Button>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          Sta già condividendo <span>Disney Plus</span>
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
